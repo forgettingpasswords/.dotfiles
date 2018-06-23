@@ -1,0 +1,13 @@
+[Added Associations]
+text/plain=org.gnome.gedit.desktop;
+x-scheme-handler/http=qutebrowser.desktop;
+x-scheme-handler/https=qutebrowser.desktop;
+
+[Default Applications]
+x-scheme-handler/http=qutebrowser.desktop
+x-scheme-handler/https=qutebrowser.desktop
+application/pdf=zathura.desktop
+application.pdf=zathura.desktop
+text/html=qutebrowser.desktop
+x-scheme-handler/about=qutebrowser.desktop
+x-scheme-handler/unknown=qutebrowser.desktop
