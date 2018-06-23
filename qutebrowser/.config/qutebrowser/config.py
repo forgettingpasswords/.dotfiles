@@ -27,5 +27,9 @@ c.bindings.commands = {
 c.content.print_element_backgrounds = False
 c.hints.chars = 'arstdhneio'
 c.editor.command = ['emacsclient', '-c', '{}']
+c.url.searchengines = {
+    "DEFAULT": "https://www.google.com/search?hl&q={}",
+    "duck": "https://duckduckgo.com/?q={}"
+}
 
 exec(open('/home/bmiww/.config/qutebrowser/nord-qutebrowser.py').read())
