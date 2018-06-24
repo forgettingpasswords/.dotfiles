@@ -2,12 +2,9 @@ Xft.dpi: 100
 
 ! Window
 URxvt.scrollBar: false
-! URxvt.borderLess: true
-! URxvt.internalBorder: 0
-! URxvt.externalBorder: 0
 
 ! Fonts
-URxvt.font: xft:Monospace:size=10
+URxvt.font: xft:Hasklig:size=10
 URxvt.depth: 32
 URxvt.background: rgba:1111/1111/1111/c800
 URxvt.foreground: rgb:baba/bdbd/b6b6
@@ -46,9 +43,3 @@ URxvt.foreground: rgb:baba/bdbd/b6b6
 
 ! Extensions
 URxvt.perl-ext-common:  default,clipboard
-
-! Keymaps
-! URxvt.iso14755: false
-! URxvt.iso14755_52: false
-! URxvt.keysym.M-c: perl:clipboard:copy
-! URxvt.keysym.M-v: perl:clipboard:paste
