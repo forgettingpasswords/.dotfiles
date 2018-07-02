@@ -13,11 +13,12 @@
 set -e
 
 # Fetch new mail.
-# offlineimap
 currentDir=$PWD
 cd ~/.mail/account.gmail/
 gmi push
 gmi pull
+# cd ~/.mail/account.unseen/
+# offlineimap
 cd $currentDir
 
 # Import new mail into the notmuch database.

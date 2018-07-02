@@ -15,11 +15,11 @@ setopt autocd extendedglob
 bindkey -v
 # End of lines configured by zsh-newuser-install
 
-export PATH=$PATH:~/.local/bin
-setxkbmap -option grp:switch,grp:win_space_toggle,grp_led:scroll us,lv -variant alt
-
 alias ls='ls --color=auto'
 alias emacsclient='emacsclient --alternate-editor="" -c "$@"'
+
+export PATH=$PATH:~/.local/bin
+setxkbmap -option grp:switch,grp:win_space_toggle,grp_led:scroll us,lv -variant alt
 
 source /usr/share/zsh/share/antigen.zsh
 antigen use oh-my-zsh
