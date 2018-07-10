@@ -21,6 +21,7 @@ alias emacsclient='emacsclient --alternate-editor="" -c "$@"'
 export PATH=$PATH:~/.local/bin
 setxkbmap -option grp:switch,grp:win_space_toggle,grp_led:scroll us,lv -variant alt
 
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/share/antigen.zsh
 antigen use oh-my-zsh
 antigen theme https://github.com/caiogondim/bullet-train-oh-my-zsh-theme bullet-train

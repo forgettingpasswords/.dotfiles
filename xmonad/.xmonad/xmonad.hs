@@ -1,11 +1,8 @@
 import           Data.Ratio
 import           XMonad
 import           XMonad.Hooks.FadeInactive
-import           XMonad.Layout.Accordion
 import           XMonad.Layout.Circle
-import           XMonad.Layout.Dwindle
 import           XMonad.Layout.NoBorders    (noBorders)
-import           XMonad.Layout.Roledex
 import           XMonad.Layout.ThreeColumns
 import           XMonad.Util.EZConfig       (additionalKeysP)
 import           XMonad.Util.SpawnOnce
@@ -18,18 +15,8 @@ compton = "compton --config ~/.config/compton.conf -b"
 
 fadeLevel = 0.7
 
-appManageHooks :: ManageHook
-appManageHooks = mconcat [matchAny v --> a | (v, a) <- myActions]
-  where
-    myActions =
-      [ ("terminator", doIgnore) ]
-
-myLogHooks = fadeInactiveLogHook fadeLevel
-
--- myLayoutHooks = tallLayout ||| columnLayout ||| borderlessCircle ||| spiralioooo ||| Roledex ||| Accordion
 myLayoutHooks = tallLayout ||| columnLayout ||| borderlessCircle
 
-spiralioooo = Spiral L CW (3/2) (11/10)
 tallLayout = noBorders ((Tall 1 (3 % 100) (1 % 2)))
 columnLayout = noBorders (ThreeColMid 1 (3/100) (1/3))
 borderlessCircle = noBorders (Circle)
@@ -41,7 +28,7 @@ myCustomKeys = [ ("M-<F1>", spawn "light-locker-command -l")
                , ("M-<F7>", spawn "gnome-screenshot -a")
                , ("M-<F6>", spawn "gnome-screenshot -w")
                , ("M-<F5>", spawn "gnome-screenshot")
-               , ("M-<F8>", spawn "/home/bmiww/.local/bin/comptroller-exe")
+               , ("M-<F8>", spawn "comptroller-exe -c")
                , ("M-<KP_Subtract>", spawn "bash ~/.local/bin/reduce-brightness.sh -d")
                , ("M-<KP_Add>", spawn "bash ~/.local/bin/reduce-brightness.sh -u")
                , ("M-p", spawn "rofi -show drun")
@@ -70,8 +57,6 @@ main = do
   xmonad $ def
     { terminal = myTerminal
     , modMask = mod4Mask
-    -- , logHook = myLogHooks
     , startupHook = myStartup
     , layoutHook = myLayoutHooks
---    , manageHook = appManageHooks
     } `additionalKeysP` myCustomKeys

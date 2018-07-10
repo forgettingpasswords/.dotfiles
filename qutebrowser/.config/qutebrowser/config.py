@@ -1,3 +1,18 @@
+youtubeAudioDownload = "spawn youtube-dl -o '~/Music/Unsorted/%(title)s.%(ext)s' --no-cache-dir --extract-audio '{url}'"
+youtubePlaylistAudioDownload = "spawn youtube-dl -o '~/Music/Unsorted/%(title)s.%(ext)s' --no-cache-dir --extract-audio '{url}' --yes-playlist"
+
+spawnYTDL = "spawn youtube-dl"
+output = "-o '~/Music/Unsorted/%(title)s.%(ext)s'"
+options = "--no-cache-dir --extract-audio"
+playlist = "--yes-playlist"
+url = "'{url}'"
+
+def whiteSpaceJoin(baseOptions):
+    return " ".join(baseOptions)
+
+dlAudio = whiteSpaceJoin([spawnYTDL, output, options, url])
+dlAudioPlaylist = whiteSpaceJoin([spawnYTDL, output, options, playlist, url])
+
 c.bindings.commands = {
     'normal': {
         'D': 'tab-close',
@@ -14,6 +29,8 @@ c.bindings.commands = {
         'e': 'scroll up',
         'f': None,
         'fe': 'open-editor',
+        'da': dlAudio,
+        'dA': dlAudioPlaylist,
         'i': 'scroll right',
         'k': 'search-next',
         'l': 'enter-mode insert',
