@@ -49,4 +49,7 @@ c.url.searchengines = {
     "duck": "https://duckduckgo.com/?q={}"
 }
 
+c.tabs.position = 'top'
+c.tabs.show = 'switching'
+
 exec(open('/home/bmiww/.config/qutebrowser/nord-qutebrowser.py').read())
