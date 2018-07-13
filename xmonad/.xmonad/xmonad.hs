@@ -1,5 +1,8 @@
+import           Data.Monoid
 import           Data.Ratio
+import           DBus
 import           XMonad
+import           XMonad.Hooks.DynamicLog
 import           XMonad.Hooks.FadeInactive
 import           XMonad.Layout.Circle
 import           XMonad.Layout.NoBorders    (noBorders)
@@ -12,8 +15,21 @@ emacsDaemon = "emacs --daemon &"
 background = "~/.fehbg &"
 locker = "light-locker &"
 compton = "compton --config ~/.config/compton.conf -b"
+myBar = "xmobar"
 
 fadeLevel = 0.7
+
+bar = statusBar myBar myPP toggleKey
+
+emptyString _ = ""
+myPP = xmobarPP { ppTitle = xmobarColor "darkgreen"  "" . shorten 30
+                , ppLayout = emptyString
+                , ppHidden = emptyString
+                , ppHiddenNoWindows = emptyString
+                , ppVisible = emptyString
+                }
+
+toggleKey XConfig { XMonad.modMask = modMask } = (modMask, xK_F9)
 
 myLayoutHooks = tallLayout ||| columnLayout ||| borderlessCircle
 
@@ -53,10 +69,42 @@ name = stringProperty "WM_CLASS"
 role :: Query String
 role = stringProperty "WM_WINDOW_ROLE"
 
-main = do
-  xmonad $ def
+-- toggleDocksHook :: Int -> KeySym -> Event -> X All
+-- toggleDocksHook to ks ( KeyEvent { ev_event_display = d
+--                                  , ev_event_type    = et
+--                                  , ev_keycode       = ekc
+--                                  , ev_time          = etime
+--                                  } ) =
+--         io (keysymToKeycode d ks) >>= toggleDocks >> return (All True)
+--     where
+--     toggleDocks kc
+--         | ekc == kc && et == keyPress = do
+--             safeSendSignal ["Reveal 0", "TogglePersistent"]
+--         | ekc == kc && et == keyRelease = do
+--             safeSendSignal [ "TogglePersistent"
+--                            , "Hide 0"
+--                            ]
+--         | otherwise = return ()
+
+--     safeSendSignal s = catchX (io $ sendSignal s) (return ())
+--     sendSignal    = withSession . callSignal
+--     -- Maybe not needed??
+--     withSession mc = connectSession >>= \c -> callNoReply c mc >> disconnect c
+--     callSignal :: [String] -> MethodCall
+--     callSignal s = ( methodCall
+--                      ( objectPath_    "/org/Xmobar/Control" )
+--                      ( interfaceName_ "org.Xmobar.Control"  )
+--                      ( memberName_    "SendSignal"          )
+--                    ) { methodCallDestination = Just $ busName_ "org.Xmobar.Control"
+--                      , methodCallBody        = map toVariant s
+--                      }
+
+-- toggleDocksHook _ _ _ = return (All True)
+
+main = xmonad =<< (bar $ def
     { terminal = myTerminal
     , modMask = mod4Mask
     , startupHook = myStartup
     , layoutHook = myLayoutHooks
     } `additionalKeysP` myCustomKeys
+                  )
