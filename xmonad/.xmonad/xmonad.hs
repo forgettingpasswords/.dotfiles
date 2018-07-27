@@ -3,6 +3,7 @@ import           Data.Ratio
 import           DBus
 import           XMonad
 import           XMonad.Hooks.DynamicLog
+import           XMonad.Hooks.EwmhDesktops
 import           XMonad.Hooks.FadeInactive
 import           XMonad.Layout.Circle
 import           XMonad.Layout.NoBorders    (noBorders)
@@ -44,7 +45,7 @@ myCustomKeys = [ ("M-<F1>", spawn "light-locker-command -l")
                , ("M-<F7>", spawn "gnome-screenshot -a")
                , ("M-<F6>", spawn "gnome-screenshot -w")
                , ("M-<F5>", spawn "gnome-screenshot")
-               , ("M-<F8>", spawn "comptroller-exe -c")
+               , ("M-<F8>", spawn "~/.local/bin/comptroller-exe -Wano 99")
                , ("M-<KP_Subtract>", spawn "bash ~/.local/bin/reduce-brightness.sh -d")
                , ("M-<KP_Add>", spawn "bash ~/.local/bin/reduce-brightness.sh -u")
                , ("M-p", spawn "rofi -show drun")
@@ -101,10 +102,10 @@ role = stringProperty "WM_WINDOW_ROLE"
 
 -- toggleDocksHook _ _ _ = return (All True)
 
-main = xmonad =<< (bar $ def
+main = (bar (ewmh $ def
     { terminal = myTerminal
     , modMask = mod4Mask
     , startupHook = myStartup
     , layoutHook = myLayoutHooks
     } `additionalKeysP` myCustomKeys
-                  )
+              )) >>= xmonad

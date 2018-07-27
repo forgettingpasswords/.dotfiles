@@ -32,7 +32,6 @@ values."
    dotspacemacs-configuration-layers
    '(
      shell-scripts
-     ;; shell-scripts
      python
      markdown
      yaml
@@ -77,6 +76,7 @@ values."
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages
    '(
+     exec-path-from-shell
      intero
      company-ghci
      autothemer
@@ -338,6 +338,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
   ;; ('cycle-spacemacs-theme)
   (add-to-list 'exec-path "~/.local/bin")
+  (when (memq window-system '(mac ns x))
+    (exec-path-from-shell-initialize))
  )
 
 (defun dotspacemacs/user-config ()
@@ -466,7 +468,7 @@ codepoints starting from codepoint-start."
    (quote
     ("fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" "8db4b03b9ae654d4a57804286eb3e332725c84d7cdab38463cb6b97d5762ad26" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "dfb830b862f506151231e12c5b02b0e31f88fd56d75487d9f2137ae6850542f7" default)))
  '(evil-want-Y-yank-to-eol nil)
- '(haskell-stylish-on-save t t)
+ '(haskell-stylish-on-save t)
  '(magit-diff-section-arguments (quote ("--ignore-all-space" "--no-ext-diff")))
  '(package-selected-packages
    (quote
