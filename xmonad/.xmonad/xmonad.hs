@@ -1,13 +1,22 @@
+import           Data.Char                  (toLower)
+import           Data.Function              (on)
+import           Data.List                  (isInfixOf)
 import           Data.Monoid
 import           Data.Ratio
 import           DBus
 import           XMonad
+import           XMonad.Actions.Search      hiding (Query)
 import           XMonad.Hooks.DynamicLog
 import           XMonad.Hooks.EwmhDesktops
 import           XMonad.Hooks.FadeInactive
 import           XMonad.Layout.Circle
 import           XMonad.Layout.NoBorders    (noBorders)
 import           XMonad.Layout.ThreeColumns
+import           XMonad.Prompt
+import           XMonad.Prompt.Man          (manPrompt)
+import           XMonad.Prompt.RunOrRaise   (runOrRaisePrompt)
+import           XMonad.Prompt.Window
+import           XMonad.Prompt.Workspace    (workspacePrompt)
 import           XMonad.Util.EZConfig       (additionalKeysP)
 import           XMonad.Util.SpawnOnce
 
@@ -34,6 +43,9 @@ toggleKey XConfig { XMonad.modMask = modMask } = (modMask, xK_F9)
 
 myLayoutHooks = tallLayout ||| columnLayout ||| borderlessCircle
 
+mod_b :: String -> String
+mod_b = ("M-b " ++)
+
 tallLayout = noBorders ((Tall 1 (3 % 100) (1 % 2)))
 columnLayout = noBorders (ThreeColMid 1 (3/100) (1/3))
 borderlessCircle = noBorders (Circle)
@@ -45,11 +57,19 @@ myCustomKeys = [ ("M-<F1>", spawn "light-locker-command -l")
                , ("M-<F7>", spawn "gnome-screenshot -a")
                , ("M-<F6>", spawn "gnome-screenshot -w")
                , ("M-<F5>", spawn "gnome-screenshot")
-               , ("M-<F8>", spawn "~/.local/bin/comptroller-exe -Wano 99")
+               , ("M-<F8>", spawn "~/.local/bin/comptroller-exe -Oano 99")
                , ("M-<KP_Subtract>", spawn "bash ~/.local/bin/reduce-brightness.sh -d")
                , ("M-<KP_Add>", spawn "bash ~/.local/bin/reduce-brightness.sh -u")
                , ("M-p", spawn "rofi -show drun")
                , ("M-S-p", spawn "rofi -show drun")
+               , ("M-<Tab>", wsWindowSwitchPrompt)
+               , ("M-S-<Tab>", windowSwitchPrompt)
+               , (mod_b "g", searchPrompt google)
+               , (mod_b "h", searchPrompt hackage)
+               , (mod_b "H", searchPrompt hoogle)
+               , (mod_b "m", manlyPrompt)
+               -- , (mod_b "w", workingSpacePrompt)
+               , (mod_b "t", runningPrompt)
                ]
 
 myStartup = do
@@ -59,16 +79,24 @@ myStartup = do
   spawnOnce myTerminal
   spawnOnce emacsDaemon
 
-matchAny :: String -> Query Bool
-matchAny x = foldr ((<||>) . (=? x)) (return False) [className, title, name, role]
+myXPConfig :: XPConfig
+myXPConfig = def
+  { bgColor = "#002b36"
+  , fgColor = "#657b83"
+  , height = 60
+  , font = "xft:Hasklig:size=14"
+  , completionKey = (noModMask, xK_Tab)
+  , searchPredicate = isInfixOf `on` map toLower
+  }
 
--- Match against @WM_NAME@.
-name :: Query String
-name = stringProperty "WM_CLASS"
-
--- Match against @WM_WINDOW_ROLE@.
-role :: Query String
-role = stringProperty "WM_WINDOW_ROLE"
+searchPrompt = promptSearchBrowser myXPConfig "qutebrowser"
+windowSwitchPrompt = windowPrompt myXPConfig Goto allWindows
+wsWindowSwitchPrompt = windowPrompt myXPConfig Goto wsWindows
+manlyPrompt = manPrompt myXPConfig
+runningPrompt = runOrRaisePrompt myXPConfig
+-- TODO Could be interesting to have a password storage like this
+-- http://hackage.haskell.org/package/xmonad-contrib-0.13/docs/XMonad-Prompt-Pass.html
+-- workingSpacePrompt = workspacePrompt myXPConfig (windows . shift)
 
 -- toggleDocksHook :: Int -> KeySym -> Event -> X All
 -- toggleDocksHook to ks ( KeyEvent { ev_event_display = d
