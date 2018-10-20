@@ -1,2 +1,2 @@
 rofi.theme:       sidetab
-rofi.modi:        drun,window,calc
+rofi.modi:        drun,window
