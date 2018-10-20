@@ -3,12 +3,14 @@ import           Data.Function              (on)
 import           Data.List                  (isInfixOf)
 import           Data.Monoid
 import           Data.Ratio
-import           DBus
+-- import           DBus
 import           XMonad
+import		 XMonad.Config.Prime 	    (composeAll, (<+>), (-->), (=?))
 import           XMonad.Actions.Search      hiding (Query)
 import           XMonad.Hooks.DynamicLog
 import           XMonad.Hooks.EwmhDesktops
 import           XMonad.Hooks.FadeInactive
+import 		 XMonad.Hooks.ManageHelpers (composeOne, isDialog, doCenterFloat, doHideIgnore, (-?>))
 import           XMonad.Layout.Circle
 import           XMonad.Layout.NoBorders    (noBorders)
 import           XMonad.Layout.ThreeColumns
@@ -130,10 +132,19 @@ runningPrompt = runOrRaisePrompt myXPConfig
 
 -- toggleDocksHook _ _ _ = return (All True)
 
+myManageHook =
+  composeOne
+  [ isDialog -?> doCenterFloat
+  ]
+  <+> composeAll
+  [ title =? "Wine System Tray"	--> doHideIgnore
+  ]
+
 main = (bar (ewmh $ def
-    { terminal = myTerminal
-    , modMask = mod4Mask
-    , startupHook = myStartup
-    , layoutHook = myLayoutHooks
+    { terminal 		= myTerminal
+    , modMask 		= mod4Mask
+    , manageHook 	= myManageHook
+    , startupHook 	= myStartup
+    , layoutHook 	= myLayoutHooks
     } `additionalKeysP` myCustomKeys
               )) >>= xmonad
