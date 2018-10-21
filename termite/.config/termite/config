@@ -1,0 +1,82 @@
+[options]
+#allow_bold = true
+#audible_bell = false
+#clickable_url = true
+#dynamic_title = true
+font = Monospace 12
+#scroll_on_output = false
+#scroll_on_keystroke = true
+scrollback_lines = -1
+#hyperlinks = false
+
+# $BROWSER is used by default if set, with xdg-open as a fallback
+#browser = xdg-open
+
+# "system", "on" or "off"
+#cursor_blink = system
+
+# "block", "underline" or "ibeam"
+#cursor_shape = block
+
+# Hide links that are no longer valid in url select overlay mode
+#filter_unmatched_urls = true
+
+# Emit escape sequences for extra modified keys
+#modify_other_keys = false
+
+# set size hints for the window
+#size_hints = false
+
+scrollbar = off
+
+[colors]
+# special
+foreground      = #e0dbb7
+foreground_bold = #e0dbb7
+cursor          = #e0dbb7
+background      = #2a1f1d
+
+# black
+color0  = #573d26
+color8  = #9b6c4a
+
+# red
+color1  = #be2d26
+color9  = #e84627
+
+# green
+color2  = #6ba18a
+color10 = #95d8ba
+
+# yellow
+color3  = #e99d2a
+color11 = #d0d150
+
+# blue
+color4  = #5a86ad
+color12 = #b8d3ed
+
+# magenta
+color5  = #ac80a6
+color13 = #d19ecb
+
+# cyan
+color6  = #74a6ad
+color14 = #93cfd7
+
+# white
+color7  = #e0dbb7
+color15 = #fff9d5
+
+[hints]
+#font = Monospace 12
+#foreground = #dcdccc
+#background = #3f3f3f
+#active_foreground = #e68080
+#active_background = #3f3f3f
+#padding = 2
+#border = #3f3f3f
+#border_width = 0.5
+#roundness = 2.0
+
+# vim: ft=dosini cms=#%s

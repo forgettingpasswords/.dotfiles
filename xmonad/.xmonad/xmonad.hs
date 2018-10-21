@@ -22,7 +22,7 @@ import           XMonad.Prompt.Workspace    (workspacePrompt)
 import           XMonad.Util.EZConfig       (additionalKeysP)
 import           XMonad.Util.SpawnOnce
 
-myTerminal = "urxvt"
+myTerminal = "termite"
 emacsDaemon = "emacs --daemon &"
 background = "~/.fehbg &"
 locker = "light-locker &"
