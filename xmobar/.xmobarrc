@@ -1,5 +1,5 @@
 Config
-  { font = "xft:Hasklig:pixelsize=22:antialias=true"
+  { font = "xft:FontAwesome:pixelsize=18,xft:Hasklig:pixelsize=18:antialias=true"
   , bgColor = "#002b36"
   , fgColor = "#657b83"
   , border = NoBorder
@@ -8,12 +8,13 @@ Config
   , persistent = True
   , position = Top
   , alpha = 0
-  , lowerOnStart = True
+  , allDesktops = True
+  , lowerOnStart = False
   , commands = [ Run Cpu ["-L","3","-H","50","--normal","#657b83","--high","#657b83"] 10
                , Run Memory ["-t","Mem: <usedratio>%"] 10
                , Run Date "<fc=#93a1a1>%a %b %_d.%m.%Y %H:%M</fc>" "date" 10
                , Run StdinReader
-               , Run BatteryP ["BAT0"] [ "-t", "Bat: <left>%"
+               , Run BatteryP ["BAT0"] [ "-t", "\xf240:<left>%"
                                        , "-L", "10", "-H", "80", "-p", "3"
                                        , "--", "-O", "<fc=green>On</fc> - ", "-i", ""
                                        , "-L", "-15", "-H", "-5"
@@ -24,3 +25,9 @@ Config
   , alignSep = "}{"
   , template = " %StdinReader% }{ %battery% =<< %cpu% =<< %memory% << %date% "
   }
+
+-- You really want to play with this
+-- https://fontawesome.com/cheatsheet
+-- https://github.com/tsiliakis/xmobar
+-- ORIGINAL XMOBAR (using this currently)
+-- https://github.com/jaor/xmobar
