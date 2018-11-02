@@ -42,3 +42,6 @@ settings:
     global: arstdhneio
   zoom.default:
     global: 100%
+  content.cookies.accept:
+    global: all
+

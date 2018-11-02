@@ -349,6 +349,21 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+  ;; Indentation stuff
+  (setq-default
+   standard-indent 2
+   tab-width 2
+   indent-tabs-mode nil
+   js-indent-level 2
+   js2-basic-offset 2
+   js2-strict-semi-warning nil
+   js2-missing-semi-one-line-override nil
+   web-mode-markup-indent-offset 2
+   web-mode-css-indent-offset 2
+   web-mode-code-indent-offset 2
+   web-mode-indent-style 2
+   )
+
   ;; Browser
   ;; DOES NOT WORK
   ;; (setq-default browse-url-browser-function 'qute-browse
@@ -466,7 +481,7 @@ codepoints starting from codepoint-start."
    (quote
     ("fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" "8db4b03b9ae654d4a57804286eb3e332725c84d7cdab38463cb6b97d5762ad26" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "dfb830b862f506151231e12c5b02b0e31f88fd56d75487d9f2137ae6850542f7" default)))
  '(evil-want-Y-yank-to-eol nil)
- '(haskell-stylish-on-save t t)
+ '(haskell-stylish-on-save t)
  '(magit-diff-section-arguments (quote ("--ignore-all-space" "--no-ext-diff")))
  '(package-selected-packages
    (quote
@@ -474,7 +489,8 @@ codepoints starting from codepoint-start."
  '(safe-local-variable-values
    (quote
     ((intero-stack-yaml . "/home/bmiww/Repos/Haskell/comptroller/stack.yaml")
-     (intero-stack-yaml . "/home/bmiww/Repos/Haskell/brickle/stack.yaml")))))
+     (intero-stack-yaml . "/home/bmiww/Repos/Haskell/brickle/stack.yaml"))))
+ '(standard-indent 2))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
