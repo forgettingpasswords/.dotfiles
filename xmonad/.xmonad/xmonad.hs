@@ -5,13 +5,15 @@ import           Data.Monoid
 import           Data.Ratio
 -- import           DBus
 import           XMonad
-import		 XMonad.Config.Prime 	    (composeAll, (<+>), (-->), (=?))
 import           XMonad.Actions.Search      hiding (Query)
+import           XMonad.Config.Prime        (composeAll, (-->), (<+>), (=?))
 import           XMonad.Hooks.DynamicLog
 import           XMonad.Hooks.EwmhDesktops
 import           XMonad.Hooks.FadeInactive
-import 		 XMonad.Hooks.ManageHelpers (composeOne, isDialog, doCenterFloat, doHideIgnore, (-?>))
+import           XMonad.Hooks.ManageHelpers (composeOne, doCenterFloat,
+                                             doHideIgnore, isDialog, (-?>))
 import           XMonad.Layout.Circle
+import           XMonad.Layout.MultiColumns (multiCol)
 import           XMonad.Layout.NoBorders    (noBorders)
 import           XMonad.Layout.ThreeColumns
 import           XMonad.Prompt
@@ -43,11 +45,12 @@ myPP = xmobarPP { ppTitle = xmobarColor "darkgreen"  "" . shorten 30
 
 toggleKey XConfig { XMonad.modMask = modMask } = (modMask, xK_F9)
 
-myLayoutHooks = tallLayout ||| columnLayout ||| borderlessCircle
+myLayoutHooks = tallLayout ||| realColumnLayout ||| columnLayout ||| borderlessCircle
 
 mod_b :: String -> String
 mod_b = ("M-b " ++)
 
+realColumnLayout = noBorders (multiCol [1] 1 0.01 0.25)
 tallLayout = noBorders ((Tall 1 (3 % 100) (1 % 2)))
 columnLayout = noBorders (ThreeColMid 1 (3/100) (1/3))
 borderlessCircle = noBorders (Circle)
@@ -141,10 +144,10 @@ myManageHook =
   ]
 
 main = (bar (ewmh $ def
-    { terminal 		= myTerminal
-    , modMask 		= mod4Mask
-    , manageHook 	= myManageHook
-    , startupHook 	= myStartup
-    , layoutHook 	= myLayoutHooks
-    } `additionalKeysP` myCustomKeys
-              )) >>= xmonad
+              { terminal 		= myTerminal
+              , modMask 		= mod4Mask
+              , manageHook 	= myManageHook
+              , layoutHook 	= myLayoutHooks
+              , startupHook 	= myStartup
+              } `additionalKeysP` myCustomKeys
+            )) >>= xmonad

@@ -101,18 +101,17 @@
         "history_lines": "1000"
     },
     "accounts": {
-        "charlie": {
-            "name": "Charlie Root",
-            "email": "root@localhost",
-
+        "toms-gmail": {
+            "name": "Toms Ozols",
+            "email": "toms.ozols5@gmail.com",
             "gpgkey": "",
             "always_gpg_sign": "false",
             "sendmail": "msmtp -i -t",
-            "default": "false",
-            "save_sent": "false",
-            "save_sent_to": "\/home\/root\/Mail\/sent\/cur\/",
+            "default": "true",
+            "save_sent": "true",
+            "save_sent_to": "\/home\/root\/.mail\/sent\/cur\/",
             "additional_sent_tags": "",
-            "save_drafts_to": "\/home\/root\/Mail\/drafts\/",
+            "save_drafts_to": "\/home\/root\/.mail\/drafts\/",
             "signature_separate": "false",
             "signature_file": "",
             "signature_file_markdown": "",
@@ -120,9 +119,9 @@
             "signature_attach": "false",
             "select_query": ""
         },
-        "toms-gmail": {
-            "name": "Toms Ozols",
-            "email": "toms.ozols5@gmail.com",
+        "myode-chocoholic": {
+            "name": "MyOde",
+            "email": "myode@chocoholic.org",
             "gpgkey": "",
             "always_gpg_sign": "false",
             "sendmail": "msmtp -i -t",

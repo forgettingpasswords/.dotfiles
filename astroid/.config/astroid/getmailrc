@@ -1,0 +1,7 @@
+[retriever]
+type=SimplePOP3SSLRetriever
+server=chocoholic-org.freeolamail.net
+username=myode@chocoholic.org
+[destination]
+type=Maildir
+path=~/.mail/account.choco/
