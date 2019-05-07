@@ -3,45 +3,6 @@
 
 config_version: 2
 settings:
-  backend:
-    global: webengine
-  bindings.commands:
-    global:
-      normal:
-        D: tab-close
-        E: tab-prev
-        F: null
-        I: forward
-        K: search-prev
-        L: null
-        N: tab-next
-        P: reload -f
-        R: null
-        T: hint all tab
-        d: null
-        e: scroll up
-        f: null
-        fe: open-editor
-        i: scroll right
-        k: search-next
-        l: enter-mode insert
-        n: scroll down
-        p: reload
-        r: null
-        t: hint
-  content.print_element_backgrounds:
-    global: false
-  editor.command:
-    global:
-    - emacsclient
-    - -c
-    - '{}'
-  editor.encoding:
-    global: utf-8
-  hints.chars:
-    global: arstdhneio
-  zoom.default:
-    global: 100%
-  content.cookies.accept:
-    global: all
-
+  content.headers.accept_language:
+    '*://127.0.0.1:8000/*': de-DE,de
+    global: en-US,en

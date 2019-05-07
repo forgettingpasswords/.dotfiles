@@ -53,30 +53,15 @@ This function should only modify configuration layer settings."
               hindent-style  "gibiansky"
               haskell-stylish-on-save t
               )
-     ;; ----------------------------------------------------------------
-     ;; Example of useful layers you may want to use right away.
-     ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
-     ;; `M-m f e R' (Emacs style) to install them.
-     ;; ----------------------------------------------------------------
      helm
-     ;; better-defaults
      emacs-lisp
      git
      gtags
-     ;; (shell :variables
-     ;;        shell-default-shell 'shell
-     ;;        shell-default-term-shell "/bin/bash")
-     ;; markdown
      multiple-cursors
-     ;; org
-     ;; (shell :variables
-     ;;        shell-default-height 30
-     ;;        shell-default-position 'bottom)
-     ;; spell-checking
      version-control
      javascript
-     ;;my-react
      react
+     lsp
      latex
      )
 
@@ -88,9 +73,11 @@ This function should only modify configuration layer settings."
    '(
      exec-path-from-shell
      intero
-     company-ghci
      autothemer
      multi-term
+     ;; flow-minor-mode
+     ;; flow-js2-mode
+     ;; flycheck-flow
      ;; darktooth-theme
      )
    ;; A list of packages that cannot be updated.
@@ -480,7 +467,6 @@ This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
-
   (add-to-list 'exec-path "~/.local/bin")
   (when (memq window-system '(mac ns x))
     (exec-path-from-shell-initialize))
@@ -513,8 +499,11 @@ you should place your code here."
    web-mode-css-indent-offset 2
    web-mode-code-indent-offset 2
    web-mode-indent-style 2
+   css-indent-offset 2
    )
 
+  (global-company-mode)
+  (global-flycheck-mode)
   ;; Browser
   ;; DOES NOT WORK
   ;; (setq-default browse-url-browser-function 'qute-browse
@@ -524,6 +513,8 @@ you should place your code here."
   (defun qute-browse (url &rest ignore)
     shell-command (concat "qutebrowser --target window " url))
 
+  (define-key evil-motion-state-map (kbd "SPC e n") 'flycheck-next-error)
+  (define-key evil-motion-state-map (kbd "SPC e p") 'flycheck-previous-error)
   ;;COLEMAK
   (define-key evil-normal-state-map "i" nil)
   (define-key evil-visual-state-map "i" nil)
@@ -533,21 +524,34 @@ you should place your code here."
   (define-key evil-motion-state-map "n" 'evil-next-visual-line)
   (define-key evil-motion-state-map "k" 'evil-search-next)
   (define-key evil-motion-state-map "K" 'evil-search-previous)
+  (define-key evil-motion-state-map "k" 'evil-ex-search-next)
+  (define-key evil-motion-state-map "K" 'evil-ex-search-previous)
+  (define-key evil-normal-state-map "k" 'evil-ex-search-next)
+  (define-key evil-normal-state-map "K" 'evil-ex-search-previous)
   (define-key evil-normal-state-map "L" 'evil-insert-line)
   (define-key evil-motion-state-map "I" 'evil-window-bottom)
 
-  (global-company-mode)
-  (global-flycheck-mode)
   (setq company-idle-delay 0)
   (setq TeX-view-program-selection '((output-pdf "Zathura")))
 
-  (require 'company-ghci)
+  (setq flycheck-javascript-eslint-executable "eslint_d")
+  ;; (setq flycheck-javascript-eslint-executable "eslint")
+  ;; (flycheck-select-checker 'javascript-eslint)
+  ;; (flycheck-select-checker 'javascript-flow)
+  ;; (spacemacs/add-flycheck-hook 'rjsx-mode)
+  (flycheck-add-mode 'javascript-eslint 'rjsx-mode)
+  ;; (add-hook 'rjsx-mode-hook #'lsp)
+  ;; (add-hook 'rjsx-mode-hook 'flow-js2-mode)
+  ;; (add-hook 'rjsx-mode-hook 'flow-minor-mode)
+  ;; (flycheck-add-next-checker 'javascript-eslint 'javascript-flow)
+  (add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode))
+  ;; (add-hook 'rjsx-mode-hook 'flow-minor-mode-enable-automatically)
 
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
   (add-hook 'haskell-mode-hook (lambda ()
                                  (message "haskell-mode-hook")
                                  (intero-mode)
-                                 (push '(company-ghci :with company-yasnippet :with company-dabbrev) company-backends-haskell-mode)
+                                 ;; (push '(company-ghci :with company-yasnippet :with company-dabbrev) company-backends-haskell-mode)
                                  (interactive-haskell-mode)
                                  (turn-on-haskell-indentation)
                                  (hindent-mode)

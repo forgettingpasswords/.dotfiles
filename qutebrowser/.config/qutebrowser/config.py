@@ -53,3 +53,5 @@ c.tabs.position = 'top'
 c.tabs.show = 'switching'
 
 exec(open('/home/toms/.config/qutebrowser/nord-qutebrowser.py').read())
+
+config.load_autoconfig()

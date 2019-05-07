@@ -1,9 +1,15 @@
-import           Data.Char                  (toLower)
-import           Data.Function              (on)
-import           Data.List                  (isInfixOf)
+import           Data.Char                   (toLower)
+import           Data.Function               (on)
+import           Data.List                   (isInfixOf)
 import           Data.Monoid
 import           Data.Ratio
--- import           DBus
+-- import           DBus                        (MethodCall, busName_,
+--                                               interfaceName_, memberName_,
+--                                               methodCall, methodCallBody,
+--                                               methodCallDestination,
+--                                               objectPath_, toVariant)
+-- import           DBus.Client                 (callNoReply, connectSession,
+--                                               disconnect)
 import           XMonad
 import           XMonad.Actions.Search      hiding (Query)
 import           XMonad.Config.Prime        (composeAll, (-->), (<+>), (=?))
@@ -17,11 +23,11 @@ import           XMonad.Layout.MultiColumns (multiCol)
 import           XMonad.Layout.NoBorders    (noBorders)
 import           XMonad.Layout.ThreeColumns
 import           XMonad.Prompt
-import           XMonad.Prompt.Man          (manPrompt)
-import           XMonad.Prompt.RunOrRaise   (runOrRaisePrompt)
+import           XMonad.Prompt.Man           (manPrompt)
+import           XMonad.Prompt.RunOrRaise    (runOrRaisePrompt)
 import           XMonad.Prompt.Window
-import           XMonad.Prompt.Workspace    (workspacePrompt)
-import           XMonad.Util.EZConfig       (additionalKeysP)
+import           XMonad.Prompt.Workspace     (workspacePrompt)
+import           XMonad.Util.EZConfig        (additionalKeysP)
 import           XMonad.Util.SpawnOnce
 
 myTerminal = "gnome-terminal"
@@ -123,7 +129,6 @@ runningPrompt = runOrRaisePrompt myXPConfig
 
 --     safeSendSignal s = catchX (io $ sendSignal s) (return ())
 --     sendSignal    = withSession . callSignal
---     -- Maybe not needed??
 --     withSession mc = connectSession >>= \c -> callNoReply c mc >> disconnect c
 --     callSignal :: [String] -> MethodCall
 --     callSignal s = ( methodCall
@@ -135,6 +140,14 @@ runningPrompt = runOrRaisePrompt myXPConfig
 --                      }
 
 -- toggleDocksHook _ _ _ = return (All True)
+
+-- myDocksEventHook :: Event -> X All
+-- myDocksEventHook e = do
+--     when (et == mapNotify || et == unmapNotify) $
+--         whenX ((not `fmap` (isClient w)) <&&> runQuery checkDock w) refresh
+--     return (All True)
+--     where w  = ev_window e
+--           et = ev_event_type e
 
 myManageHook =
   composeOne
