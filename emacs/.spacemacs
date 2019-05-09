@@ -77,7 +77,7 @@ This function should only modify configuration layer settings."
      multi-term
      ;; flow-minor-mode
      ;; flow-js2-mode
-     ;; flycheck-flow
+     flymake-eslint
      ;; darktooth-theme
      )
    ;; A list of packages that cannot be updated.
@@ -502,8 +502,7 @@ you should place your code here."
    css-indent-offset 2
    )
 
-  (global-company-mode)
-  (global-flycheck-mode)
+  ;; (global-company-mode)
   ;; Browser
   ;; DOES NOT WORK
   ;; (setq-default browse-url-browser-function 'qute-browse
@@ -513,10 +512,20 @@ you should place your code here."
   (defun qute-browse (url &rest ignore)
     shell-command (concat "qutebrowser --target window " url))
 
-  (define-key evil-motion-state-map (kbd "SPC e n") 'flycheck-next-error)
-  (define-key evil-motion-state-map (kbd "SPC e p") 'flycheck-previous-error)
+  (define-key evil-motion-state-map (kbd "SPC e n") 'flymake-goto-next-error)
+  (define-key evil-motion-state-map (kbd "SPC e p") 'flymake-goto-prev-error)
   ;;COLEMAK
   (define-key evil-normal-state-map "i" nil)
+
+  (define-key evil-normal-state-map (kbd "SPC x {") 'sp-wrap-curly)
+  (define-key evil-normal-state-map (kbd "SPC x }") 'sp-wrap-curly)
+
+  (define-key evil-normal-state-map (kbd "SPC x (") 'sp-wrap-round)
+  (define-key evil-normal-state-map (kbd "SPC x )") 'sp-wrap-round)
+
+  (define-key evil-normal-state-map (kbd "SPC x [")  'sp-wrap-square)
+  (define-key evil-normal-state-map (kbd "SPC x ]") 'sp-wrap-square)
+
   (define-key evil-visual-state-map "i" nil)
   (define-key evil-motion-state-map "l" 'evil-insert)
   (define-key evil-motion-state-map "i" 'evil-forward-char)
@@ -530,22 +539,22 @@ you should place your code here."
   (define-key evil-normal-state-map "K" 'evil-ex-search-previous)
   (define-key evil-normal-state-map "L" 'evil-insert-line)
   (define-key evil-motion-state-map "I" 'evil-window-bottom)
+  (define-key evil-normal-state-map ",," 'lsp-ui-sideline-apply-code-actions)
 
   (setq company-idle-delay 0)
   (setq TeX-view-program-selection '((output-pdf "Zathura")))
 
   (setq flycheck-javascript-eslint-executable "eslint_d")
+  (setq flymake-eslint-executable-name "eslint_d")
+  (use-package company-lsp :commands company-lsp)
   ;; (setq flycheck-javascript-eslint-executable "eslint")
   ;; (flycheck-select-checker 'javascript-eslint)
   ;; (flycheck-select-checker 'javascript-flow)
   ;; (spacemacs/add-flycheck-hook 'rjsx-mode)
   (flycheck-add-mode 'javascript-eslint 'rjsx-mode)
-  ;; (add-hook 'rjsx-mode-hook #'lsp)
-  ;; (add-hook 'rjsx-mode-hook 'flow-js2-mode)
-  ;; (add-hook 'rjsx-mode-hook 'flow-minor-mode)
-  ;; (flycheck-add-next-checker 'javascript-eslint 'javascript-flow)
+  (add-hook 'rjsx-mode-hook #'lsp)
+  (add-hook 'rjsx-mode-hook 'flymake-eslint-enable)
   (add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode))
-  ;; (add-hook 'rjsx-mode-hook 'flow-minor-mode-enable-automatically)
 
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
   (add-hook 'haskell-mode-hook (lambda ()
