@@ -52,4 +52,4 @@ c.url.searchengines = {
 c.tabs.position = 'top'
 c.tabs.show = 'switching'
 
-exec(open('/home/bmiww/.config/qutebrowser/nord-qutebrowser.py').read())
+exec(open('/home/toms/.config/qutebrowser/nord-qutebrowser.py').read())
