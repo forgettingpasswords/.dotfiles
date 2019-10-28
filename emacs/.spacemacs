@@ -32,9 +32,10 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(
-     typescript
+   '(html
+     (typescript :variables typescript-backend 'lsp)
      php
+     org
      themes-megapack
      shell-scripts
      nixos
@@ -63,6 +64,7 @@ This function should only modify configuration layer settings."
      react
      lsp
      latex
+     prettier
      )
 
    ;; List of additional packages that will be installed without being
@@ -77,7 +79,6 @@ This function should only modify configuration layer settings."
      multi-term
      ;; flow-minor-mode
      ;; flow-js2-mode
-     flymake-eslint
      ;; darktooth-theme
      )
    ;; A list of packages that cannot be updated.
@@ -378,7 +379,7 @@ It should only modify the values of Spacemacs settings."
 
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
-   dotspacemacs-folding-method 'evil
+   dotspacemacs-folding-method 'origami
 
    ;; If non-nil `smartparens-strict-mode' will be enabled in programming modes.
    ;; (default nil)
@@ -479,6 +480,11 @@ This function is called only while dumping Spacemacs configuration. You can
 dump."
   )
 
+(defun browse-in-qutebrowser (url &rest ARGS)
+  "Open url in a new tab in qutebrowser"
+  (interactive (browse-url-interactive-arg "URL: "))
+  (shell-command (concat "bash ~/qutebrowser " url)))
+
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
@@ -502,18 +508,17 @@ you should place your code here."
    css-indent-offset 2
    )
 
-  ;; (global-company-mode)
-  ;; Browser
-  ;; DOES NOT WORK
-  ;; (setq-default browse-url-browser-function 'qute-browse
-  (setq-default browse-url-browser-function 'browse-url-generic
-                browse-url-generic-program "qutebrowser")
+  ;; (setq-default browse-url-generic-program "qutebrowser")
+  (setq-default browse-url-browser-function 'browse-in-qutebrowser)
+  ;; (setq-default browse-url-generic-program "bash ~/qutebrowser")
+  
 
   (defun qute-browse (url &rest ignore)
     shell-command (concat "qutebrowser --target window " url))
 
-  (define-key evil-motion-state-map (kbd "SPC e n") 'flymake-goto-next-error)
-  (define-key evil-motion-state-map (kbd "SPC e p") 'flymake-goto-prev-error)
+
+  ;; (define-key evil-motion-state-map (kbd "SPC e n") 'flymake-goto-next-error)
+  ;; (define-key evil-motion-state-map (kbd "SPC e p") 'flymake-goto-prev-error)
   ;;COLEMAK
   (define-key evil-normal-state-map "i" nil)
 
@@ -545,15 +550,12 @@ you should place your code here."
   (setq TeX-view-program-selection '((output-pdf "Zathura")))
 
   (setq flycheck-javascript-eslint-executable "eslint_d")
-  (setq flymake-eslint-executable-name "eslint_d")
+  ;; (setq flymake-eslint-executable-name "eslint_d")
   (use-package company-lsp :commands company-lsp)
-  ;; (setq flycheck-javascript-eslint-executable "eslint")
-  ;; (flycheck-select-checker 'javascript-eslint)
-  ;; (flycheck-select-checker 'javascript-flow)
-  ;; (spacemacs/add-flycheck-hook 'rjsx-mode)
-  (flycheck-add-mode 'javascript-eslint 'rjsx-mode)
+  (setq javascript-fmt-tool 'prettier)
   (add-hook 'rjsx-mode-hook #'lsp)
-  (add-hook 'rjsx-mode-hook 'flymake-eslint-enable)
+  (add-hook 'rjsx-mode-hook 'prettier-js-mode)
+  ;; (add-hook 'rjsx-mode-hook 'flymake-eslint-enable)
   (add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode))
 
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
@@ -634,3 +636,25 @@ codepoints starting from codepoint-start."
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
+(defun dotspacemacs/emacs-custom-settings ()
+  "Emacs custom settings.
+This is an auto-generated function, do not modify its content directly, use
+Emacs customize menu instead.
+This function is called at the very end of Spacemacs initialization."
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(evil-want-Y-yank-to-eol nil)
+ '(package-selected-packages
+   (quote
+    (zenburn-theme zen-and-art-theme yasnippet-snippets yapfify yaml-mode ws-butler writeroom-mode winum white-sand-theme which-key web-mode web-beautify volatile-highlights uuidgen use-package underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme treemacs-projectile treemacs-evil toxi-theme toc-org tide tao-theme tangotango-theme tango-plus-theme tango-2-theme tagedit symon symbol-overlay sunny-day-theme sublime-themes subatomic256-theme subatomic-theme string-inflection spaceline-all-the-icons spacegray-theme soothe-theme solarized-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme smeargle slim-mode seti-theme scss-mode sass-mode rjsx-mode reverse-theme restart-emacs rebecca-theme rainbow-delimiters railscasts-theme pytest pyenv-mode py-isort purple-haze-theme pug-mode professional-theme prettier-js popwin planet-theme pippel pipenv pip-requirements phpunit phpcbf php-extras php-auto-yasnippets phoenix-dark-pink-theme phoenix-dark-mono-theme persp-mode pcre2el password-generator paradox overseer origami organic-green-theme org-plus-contrib org-bullets open-junk-file omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme nodejs-repl noctilux-theme nix-mode naquadah-theme nameless mustang-theme multi-term move-text monokai-theme monochrome-theme molokai-theme moe-theme mmm-mode minimal-theme material-theme markdown-toc majapahit-theme magit-svn magit-gitflow madhat2r-theme macrostep lush-theme lsp-ui lsp-treemacs lsp-python-ms lsp-haskell lorem-ipsum livid-mode live-py-mode linum-relative link-hint light-soap-theme less-css-mode kaolin-themes json-navigator json-mode js2-refactor js-doc jbeans-theme jazz-theme ir-black-theme intero insert-shebang inkpot-theme indent-guide importmagic impatient-mode hybrid-mode hungry-delete hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation heroku-theme hemisu-theme helm-xref helm-themes helm-swoop helm-pydoc helm-purpose helm-projectile helm-nixos-options helm-mode-manager helm-make helm-lsp helm-hoogle helm-gtags helm-gitignore helm-git-grep helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag hc-zenburn-theme haskell-snippets gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme google-translate golden-ratio gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md ggtags gandalf-theme fuzzy font-lock+ flycheck-pos-tip flycheck-package flycheck-haskell flycheck-bashate flx-ido flatui-theme flatland-theme fish-mode fill-column-indicator farmhouse-theme fancy-battery eziam-theme eyebrowse expand-region exotica-theme exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu espresso-theme emmet-mode elisp-slime-nav editorconfig dumb-jump drupal-mode dracula-theme dotenv-mode doom-themes doom-modeline django-theme diminish diff-hl devdocs define-word darktooth-theme darkokai-theme darkmine-theme darkburn-theme dante dakrone-theme cython-mode cyberpunk-theme company-web company-tern company-statistics company-shell company-reftex company-php company-nixos-options company-lsp company-ghci company-ghc company-cabal company-auctex company-anaconda column-enforce-mode color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized cmm-mode clues-theme clean-aindent-mode chocolate-theme cherry-blossom-theme centered-cursor-mode busybee-theme bubbleberry-theme browse-at-remote blacken birds-of-paradise-plus-theme badwolf-theme auto-yasnippet auto-highlight-symbol auto-compile attrap apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes aggressive-indent afternoon-theme ace-link ace-jump-helm-line ac-ispell)))
+ '(paradox-github-token t))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:background nil)))))
+)
