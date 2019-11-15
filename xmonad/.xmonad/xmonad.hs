@@ -30,7 +30,7 @@ import           XMonad.Prompt.Workspace     (workspacePrompt)
 import           XMonad.Util.EZConfig        (additionalKeysP)
 import           XMonad.Util.SpawnOnce
 
-myTerminal = "gnome-terminal"
+myTerminal = "termite"
 emacsDaemon = "emacs --daemon &"
 background = "~/.fehbg &"
 locker = "light-locker &"
@@ -61,7 +61,7 @@ tallLayout = noBorders ((Tall 1 (3 % 100) (1 % 2)))
 columnLayout = noBorders (ThreeColMid 1 (3/100) (1/3))
 borderlessCircle = noBorders (Circle)
 
-myCustomKeys = [ ("M-<F1>", spawn "light-locker-command -l")
+myCustomKeys = [ ("M-<F1>", spawn "gnome-screensaver-command -l && xset dpms force off")
                , ("M-<F2>", spawn "emacsclient -c")
                --, ("M-<F3>", spawn "qutebrowser")
                , ("M-<F3>", spawn "bash ~/qutebrowser")

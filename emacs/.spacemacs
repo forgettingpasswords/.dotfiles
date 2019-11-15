@@ -496,6 +496,8 @@ you should place your code here."
   (setq-default
    standard-indent 2
    tab-width 2
+   typescript-indent-level 2
+   lsp-typescript-preferences-quote-style "single"
    indent-tabs-mode nil
    js-indent-level 2
    js2-basic-offset 2
@@ -508,10 +510,7 @@ you should place your code here."
    css-indent-offset 2
    )
 
-  ;; (setq-default browse-url-generic-program "qutebrowser")
   (setq-default browse-url-browser-function 'browse-in-qutebrowser)
-  ;; (setq-default browse-url-generic-program "bash ~/qutebrowser")
-  
 
   (defun qute-browse (url &rest ignore)
     shell-command (concat "qutebrowser --target window " url))
@@ -550,6 +549,9 @@ you should place your code here."
   (setq TeX-view-program-selection '((output-pdf "Zathura")))
 
   (setq flycheck-javascript-eslint-executable "eslint_d")
+  (setq flycheck-typescript-tslint-executable "eslint_d")
+  (with-eval-after-load 'flycheck
+    (flycheck-add-mode 'javascript-eslint 'typescript-tsx-mode))
   ;; (setq flymake-eslint-executable-name "eslint_d")
   (use-package company-lsp :commands company-lsp)
   (setq javascript-fmt-tool 'prettier)
