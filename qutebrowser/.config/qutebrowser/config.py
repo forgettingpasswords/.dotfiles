@@ -37,7 +37,9 @@ c.bindings.commands = {
         'n': 'scroll down',
         'p': 'reload',
         'r': None,
-        't': 'hint'
+        't': 'hint',
+        'zp': 'spawn --userscript qute-pass --password-only',
+        'zf': 'spawn --userscript qute-pass'
     }
 }
 
@@ -52,6 +54,7 @@ c.url.searchengines = {
 c.tabs.position = 'top'
 c.tabs.show = 'switching'
 
-exec(open('/home/toms/.config/qutebrowser/nord-qutebrowser.py').read())
+with open('/home/toms/.config/qutebrowser/nord-qutebrowser.py', 'r') as f:
+    exec(f.read())
 
 config.load_autoconfig()
