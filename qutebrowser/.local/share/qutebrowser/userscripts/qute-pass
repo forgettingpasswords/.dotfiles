@@ -1,7 +1,4 @@
-#!/nix/store/0n4asq0snd1fxzk5f3zy1s52kvidr7pp-system-path/bin/python3
-
-# The following shebang is not working properly because the qutebrowser python3 does not have tldextract with it? Or somethin.
-#/usr/bin/env python3
+#!/usr/bin/env python3
 
 # Copyright 2017 Chris Braun (cryzed) <cryzed@googlemail.com>
 #
@@ -24,8 +21,6 @@
 Insert login information using pass and a dmenu-compatible application (e.g. dmenu, rofi -dmenu, ...). A short
 demonstration can be seen here: https://i.imgur.com/KN3XuZP.gif.
 """
-
-
 
 USAGE = """The domain of the site has to appear as a segment in the pass path, for example: "github.com/cryzed" or
 "websites/github.com". How the username and password are determined is freely configurable using the CLI arguments. The
@@ -54,7 +49,6 @@ import subprocess
 import sys
 
 print(os.environ)
-
 import tldextract
 
 argument_parser = argparse.ArgumentParser(description=__doc__, usage=USAGE, epilog=EPILOG)
