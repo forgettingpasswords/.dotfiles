@@ -186,7 +186,7 @@ It should only modify the values of Spacemacs settings."
    ;; List of items to show in startup buffer or an association list of
    ;; the form `(list-type . list-size)`. If nil then it is disabled.
    ;; Possible values for list-type are:
-   ;; `recents' `bookmarks' `projects' `agenda' `todos'.
+   ;; `recents' `bookmarks' `projects' `agenda' `todos'
    ;; List sizes may be nil, in which case
    ;; `spacemacs-buffer-startup-lists-length' takes effect.
    dotspacemacs-startup-lists '((recents . 5)
@@ -572,6 +572,7 @@ you should place your code here."
 
   (add-hook 'prettier-js-mode-hook 'my/use-local-prettier-config)
   (setq company-idle-delay 0)
+  (setq TeX-PDF-mode t)
   (setq TeX-view-program-selection '((output-pdf "Zathura")))
 
   (setq flycheck-javascript-eslint-executable "eslint_d")

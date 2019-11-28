@@ -10,3 +10,5 @@
 /ranger/.config/ranger/tagged
 /nvim/.config/nvim/.netrwhist
 /qutebrowser/.config/qutebrowser/qsettings/QtProject.conf
+/qutebrowser/.config/qutebrowser/bookmarks/
+/qutebrowser/.config/qutebrowser/qsettings/

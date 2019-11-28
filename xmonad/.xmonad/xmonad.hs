@@ -20,7 +20,7 @@ import           XMonad.Hooks.ManageHelpers (composeOne, doCenterFloat,
                                              doHideIgnore, isDialog, (-?>))
 import           XMonad.Layout.Circle
 import           XMonad.Layout.MultiColumns (multiCol)
-import           XMonad.Layout.NoBorders    (noBorders)
+import           XMonad.Layout.NoBorders
 import           XMonad.Layout.ThreeColumns
 import           XMonad.Prompt
 import           XMonad.Prompt.Man           (manPrompt)
@@ -61,8 +61,7 @@ tallLayout = noBorders ((Tall 1 (3 % 100) (1 % 2)))
 columnLayout = noBorders (ThreeColMid 1 (3/100) (1/3))
 borderlessCircle = noBorders (Circle)
 
-myCustomKeys = [ -- ("M-<F1>", spawn "gnome-screensaver-command -l && xset dpms force off")
-                 ("M-<F1>", spawn "physlock -sm")
+myCustomKeys = [ ("M-<F1>", spawn "physlock -sm")
                , ("M-<F2>", spawn "SHELL=/bin/bash emacsclient -c")
                , ("M-<F3>", spawn "qutebrowser")
                , ("M-<F4>", spawn "networkmanager_dmenu")
@@ -162,7 +161,7 @@ main = (bar (ewmh $ def
               { terminal 		= myTerminal
               , modMask 		= mod4Mask
               , manageHook 	= myManageHook
-              , layoutHook 	= myLayoutHooks
+              , layoutHook 	= noBorders $ myLayoutHooks
               , startupHook 	= myStartup
               } `additionalKeysP` myCustomKeys
             )) >>= xmonad

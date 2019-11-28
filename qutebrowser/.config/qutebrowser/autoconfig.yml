@@ -23,7 +23,7 @@ settings:
   content.media.video_capture:
     global: true
     https://app.slack.com: false
-  content.notifications:
+  content.notifications.enabled:
     https://app.slack.com: true
     https://app.zeplin.io: true
     https://gitlab.com: true
