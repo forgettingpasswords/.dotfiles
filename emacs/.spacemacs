@@ -550,6 +550,7 @@ you should place your code here."
 
   (setq flycheck-javascript-eslint-executable "eslint_d")
   (setq flycheck-typescript-tslint-executable "eslint_d")
+  (setq avy-keys '(?a ?r ?s ?t ?d ?h ?n ?e ?i ?o))
   (with-eval-after-load 'flycheck
     (flycheck-add-mode 'javascript-eslint 'typescript-tsx-mode))
   ;; (setq flymake-eslint-executable-name "eslint_d")
