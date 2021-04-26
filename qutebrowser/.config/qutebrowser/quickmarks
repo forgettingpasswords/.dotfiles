@@ -25,10 +25,7 @@ neck exercises https://www.youtube.com/watch?v=pBPdjEbnbzI
 lightdm greeter https://github.com/pedropenna/musfealle
 spacemacs config example haskell https://lpaste.net/3275725072228155392
 spacemacs haskell layer http://spacemacs.org/layers/+lang/haskell/README.html
-cool coffee table https://www.amazon.de/CARO-M%C3%B6bel-Couchtisch-Wohnzimmertisch-Beistelltisch-Ablagefach/dp/B01L1S4Q7M/ref=pd_sim_196_6?_encoding=UTF8&pd_rd_i=B01L1S4Q7M&pd_rd_r=c8813c54-757b-11e8-860a-3568273fff2b&pd_rd_w=HWa9I&pd_rd_wg=tBSaS&pf_rd_i=desktop-dp-sims&pf_rd_m=A3JWKAKR8XB7XF&pf_rd_p=5296994838746851949&pf_rd_r=DM1R0X6BY6DFNRS3CG71&pf_rd_s=desktop-dp-sims&pf_rd_t=40701&psc=1&refRID=DM1R0X6BY6DFNRS3CG71
-cool bed https://www.amazon.de/dp/B076D9PZH4/ref=psdc_359288031_t3_B01E04QED8
 Ragna Crimson Manguh https://mangadex.org/chapter/7677/63
-layout ergodox v3.5.2 https://configure.ergodox-ez.com/keyboard_layouts/oepoaa/edit
 layout ergodox v3.5.3 https://configure.ergodox-ez.com/keyboard_layouts/yylodr/edit
 manguh ragna https://mangadex.org/chapter/83824/23
 objects in space game https://www.youtube.com/watch?v=rlMWxkcn-0U
@@ -57,3 +54,40 @@ DARCS HUB https://hub.darcs.net/myode
 WORK CONFLUENCE https://wiki.novamedia.com/dashboard.action
 WORK JIRA https://novamedia-jira.atlassian.net/jira/your-work
 WORK NEW LOCAL http://localhost:8000/
+WORK SITE MAIN https://www.postcode-lotterie.de/
+WORK LOCAL ADMIN http://localhost/admin/login
+WORK MAIL https://outlook.office365.com/mail/inbox
+WORK NEW LOCAL ADMIN http://localhost:8000/admin/#/
+WORK OFFICE DESIGNS https://lotterydays.sharepoint.com/sites/DPL/DPL_Dokumentencenter/Forms/AllItems.aspx?viewid=98fcf322-9adc-4e29-9945-c7de0edabfb6&id=%2Fsites%2FDPL%2FDPL_Dokumentencenter%2FIT%20und%20Webseite%2FCorporate%20Web%20v2%2FMKT%20Deliverables%20Phase%2001-02%202
+WORK LOCAL CMS DEV http://localhost:8080/#/
+WORK GIT OLD https://git-de.nl.novamedia.com/
+GIT NEW GITLAB WEBSITE FRONTEND https://gitlab.com/postcode-lotterie/website-frontend
+GIT OLD WORK https://git-de.nl.novamedia.com/CorporateSiteDE/dpl-web-cs
+WORK GIT OLD CMS https://git-de.nl.novamedia.com/CorporateSiteDE/dpl-web-cs
+WORK GRAPHQL PLAY http://localhost:4000/
+order http://localhost:8000/v1/anmelden
+Testing postcode http://localhost:8000/v1/anmelden?postleitzahl=40239
+work staging admin schufa file:///home/toms/Downloads/postcode-staging_default.html
+WORK GATSBY GRAPHQL http://localhost:8000/___graphql
+GIT GITHUB MATHIJS NETLIFY https://github.com/mathijsb/netlify-cms/commits/features
+insic page schufa https://insic.de/partnerportal/3e2a5845-f1ac-4d45-aed8-55e1695e2785/
+order version two 2 http://localhost:8000/v2/anmelden
+gatherer https://gatherer.wizards.com/Pages/Advanced.aspx
+work resultspage design https://app.zeplin.io/project/5e8e05a3f2c1872235527be8
+stupid aws books https://evantage.gilmoreglobal.com/#/
+vim athame shell plugin https://github.com/ardagnir/athame
+nixos allpackages https://github.com/NixOS/nixpkgs/blob/master/pkgs/top-level/all-packages.nix
+nixos options https://nixos.org/manual/nixos/stable/options.html
+old cms admin http://cs-admin-pr.de.novamedia.com/admin/login
+rackspace aws dashboard https://manage.rackspace.com/aws/accounts
+beehive at admin https://beehive-at1.dplaws.de/login/
+beehive drawmanager api swagger https://beehive-at1.dplaws.de/drawmanager-ws/swagger-ui/index.html?configUrl=/drawmanager-ws/v3/api-docs/swagger-config#/draw-period-controller/getNextDrawPeriod
+beehive usermanager swagger api https://beehive-at1.dplaws.de/usermanager-ws/swagger-ui/index.html?configUrl=/usermanager-ws/v3/api-docs/swagger-config#/accountholder/getBankAccount
+beehive customerorchestrator swagger api https://beehive-at1.dplaws.de/customerorchestrator-rest/swagger-ui/index.html?configUrl=/customerorchestrator-rest/v3/api-docs/swagger-config#/change-payment-account-controller/changePaymentAccountByOrchestrator
+beehive at cumulus https://beehive-at1.dplaws.de/cumulus-ws/swagger-ui/index.html?configUrl=/cumulus-ws/v3/api-docs/swagger-config
+beehive at paymentmanager https://beehive-at1.dplaws.de/paymentmanager-ws/swagger-ui/index.html?configUrl=/paymentmanager-ws/v3/api-docs/swagger-config
+GIT NEW GITLAB MY ACCOUNT https://gitlab.com/postcode-lotterie/aws-my-account
+gitlab salesflow https://gitlab.com/postcode-lotterie/aws-salesflow
+beehive at salesorchestrator https://beehive-at1.dplaws.de/salesorchestrator-rest/swagger-ui/index.html?configUrl=/salesorchestrator-rest/v3/api-docs/swagger-config
+git new gitlab aws cloudfront https://gitlab.com/postcode-lotterie/aws-cloudfront
+payone login https://login.pay1.de/auth/realms/bspayone/protocol/openid-connect/auth?response_type=code&client_id=php-pmi&redirect_uri=https%3A%2F%2Fpmi.pay1.de%2Fmerchants%2Findex.php

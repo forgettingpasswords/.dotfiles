@@ -1,2 +1,3 @@
 rofi.theme:       sidetab
 rofi.modi:        drun,window
+rofi.terminal:	  termite

@@ -1,0 +1,55 @@
+#!/nix/store/0n4asq0snd1fxzk5f3zy1s52kvidr7pp-system-path/bin/python3
+
+import urllib.parse as urlparse
+from urllib.parse import parse_qs
+import argparse
+import sys
+import functools
+import enum
+import os
+from subprocess import run, DEVNULL, PIPE
+
+USAGE = """
+TODO
+"""
+
+EPILOG = """
+TODO
+"""
+
+
+argument_parser = argparse.ArgumentParser(description=__doc__, usage=USAGE, epilog=EPILOG)
+argument_parser.add_argument('url', nargs='?', default=os.getenv('QUTE_URL'))
+
+stderr = functools.partial(print, file=sys.stderr)
+
+class ExitCodes(enum.IntEnum):
+    SUCCESS = 0
+    FAILURE = 1
+    NOT_PLAYLIST = 2
+
+def main(arguments):
+    if not arguments.url:
+        return ExitCodes.FAILURE
+
+    parsed = urlparse.urlparse(arguments.url)
+    qs = parse_qs(parsed.query)
+
+    if not 'list' in qs:
+        stderr("Supplied url is not a youtube playlist")
+        return ExitCodes.NOT_PLAYLIST
+
+    list = qs['list']
+    playUrl = "https://youtube.com/playlist?list={}".format(list[0])
+
+    fifo = os.environ['QUTE_FIFO']
+
+    with open(fifo, "a") as myfile:
+        # myfile.write("spawn mpv --no-video --shuffle {}".format(playUrl))
+        myfile.write("spawn mpv --shuffle {}".format(playUrl))
+
+    return ExitCodes.SUCCESS
+
+if __name__ == '__main__':
+    arguments = argument_parser.parse_args()
+    sys.exit(main(arguments))

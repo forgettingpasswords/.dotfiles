@@ -1,0 +1,49 @@
+#!/usr/bin/env python3
+
+import sys
+import os
+import argparse
+import tldextract
+
+class ExitCodes(enum.IntEnum):
+    SUCCESS = 0
+    FAILURE = 1
+
+argument_parser = argparse.ArgumentParser(description=__doc__, usage=USAGE, epilog=EPILOG)
+argument_parser.add_argument('url', nargs='?', default=os.getenv('QUTE_URL'))
+argument_parser.add_argument('--password-store', '-p',
+                             default=os.getenv('PASSWORD_STORE_DIR', default=os.path.expanduser('~/.password-store')),
+                             help='Path to your pass password-store')
+
+def find_pass_candidates(domain, password_store_path):
+    candidates = []
+    for path, directories, file_names in os.walk(password_store_path, followlinks=True):
+        secrets = fnmatch.filter(file_names, '*.gpg')
+        if not secrets:
+            continue
+
+        # Strip password store path prefix to get the relative pass path
+        pass_path = path[len(password_store_path) + 1:]
+        split_path = pass_path.split(os.path.sep)
+        for secret in secrets:
+            secret_base = os.path.splitext(secret)[0]
+            if domain not in (split_path + [secret_base]):
+                continue
+
+            candidates.append(os.path.join(pass_path, secret_base))
+    return candidates
+
+def main(arguments):
+    if not arguments.url:
+        argument_parser.print_help()
+        return ExitCodes.FAILURE
+
+    extractor = tldextract.TLDExtract(extra_suffixes=arguments.extra_url_suffixes.split(','))
+    extract_result = extractor(arguments.url);
+    password_store_path = os.path.expanduser(arguments.password_store)
+
+
+
+if __name__ == '__main__':
+    arguments = argument_parser.parse_args()
+    sys.exit(main(arguments))

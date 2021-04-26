@@ -33,13 +33,16 @@ c.bindings.commands = {
         'dA': dlAudioPlaylist,
         'i': 'scroll right',
         'k': 'search-next',
-        'l': 'enter-mode insert',
+        'l': 'mode-enter insert',
         'n': 'scroll down',
         'p': 'reload',
         'r': None,
         't': 'hint',
         'zp': 'spawn --userscript qute-pass --password-only',
-        'zf': 'spawn --userscript qute-pass'
+        'zf': 'spawn --userscript qute-pass',
+        'zo': 'spawn --userscript qute-pass --otp-only',
+        ',p': 'spawn --userscript run-yt-playlist',
+        ',P': 'hint links spawn mpv --shuffle {hint-url}'
     }
 }
 
@@ -48,11 +51,19 @@ c.hints.chars = 'arstdhneio'
 c.editor.command = ['emacsclient', '-c', '{}']
 c.url.searchengines = {
     "DEFAULT": "https://www.google.com/search?hl&q={}",
-    "duck": "https://duckduckgo.com/?q={}"
+    "duck": "https://duckduckgo.com/?q={}",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?searchString={}"
 }
 
 c.tabs.position = 'top'
 c.tabs.show = 'switching'
+
+c.fileselect.handler = "external"
+c.fileselect.multiple_files.command = ["/home/toms/.local/bin/waitqutetemp", "choosefiles", "{}"]
+c.fileselect.single_file.command = ["/home/toms/.local/bin/waitqutetemp", "choosefile", "{}"]
+
+with config.pattern('*://app.slack.com/') as domainC:
+    domainC.content.notifications = True
 
 with open('/home/toms/.config/qutebrowser/nord-qutebrowser.py', 'r') as f:
     exec(f.read())

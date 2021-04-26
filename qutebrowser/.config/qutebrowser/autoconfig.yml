@@ -6,8 +6,27 @@
 
 config_version: 2
 settings:
+  content.desktop_capture:
+    global: true
   content.geolocation:
+    https://wizzair.com: false
     https://www.lieferando.de: false
   content.headers.accept_language:
     '*://127.0.0.1:8000/*': de-DE,de
     global: en-US,en
+  content.media.audio_capture:
+    global: true
+    https://app.slack.com: false
+  content.media.audio_video_capture:
+    global: true
+    https://app.slack.com: false
+  content.media.video_capture:
+    global: true
+    https://app.slack.com: false
+  content.notifications:
+    https://app.slack.com: true
+    https://app.zeplin.io: true
+    https://gitlab.com: true
+    https://meet.google.com: false
+  content.register_protocol_handler:
+    https://mail.google.com?extsrc=mailto&url=%25s: false
