@@ -13,6 +13,9 @@ fish_vi_key_bindings
 set -gx PATH ~/.local/bin $PATH
 setxkbmap -option grp:switch,grp:win_space_toggle,grp_led:scroll us,lv -variant alt
 
+if test -f /usr/share/autojump/autojump.fish
+    source /usr/share/autojump/autojump.fish
+end
 
 if test -e /etc/NIXOS
     # include this plugin so nix will work
