@@ -69,3 +69,5 @@ settings:
     global: arstdhneio
   zoom.default:
     global: 100%
+  content.media.audio_capture:
+    https://discord.com: true

@@ -53,7 +53,8 @@ c.content.print_element_backgrounds = False
 c.hints.chars = 'arstdhneio'
 c.editor.command = ['emacsclient', '-c', '{}']
 c.url.searchengines = {
-    "DEFAULT": "https://www.google.com/search?hl&q={}",
+    "DEFAULT": "https://duckduckgo.com/?q={}",
+    "google": "https://www.google.com/search?hl&q={}",
     "duck": "https://duckduckgo.com/?q={}",
     "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?searchString={}"
 }

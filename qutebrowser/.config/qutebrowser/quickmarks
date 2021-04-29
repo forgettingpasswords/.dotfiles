@@ -91,3 +91,8 @@ gitlab salesflow https://gitlab.com/postcode-lotterie/aws-salesflow
 beehive at salesorchestrator https://beehive-at1.dplaws.de/salesorchestrator-rest/swagger-ui/index.html?configUrl=/salesorchestrator-rest/v3/api-docs/swagger-config
 git new gitlab aws cloudfront https://gitlab.com/postcode-lotterie/aws-cloudfront
 payone login https://login.pay1.de/auth/realms/bspayone/protocol/openid-connect/auth?response_type=code&client_id=php-pmi&redirect_uri=https%3A%2F%2Fpmi.pay1.de%2Fmerchants%2Findex.php
+payslip arbeitnehmer https://secure10.datev.de/an-online/
+skype https://web.skype.com
+nixos options https://nixos.org/manual/nixos/stable/options.html
+hero siege build guides https://docs.google.com/document/d/1JyNuFIao11dJgI1tjc4RNhYcPcALx73aas2d-uFcDqI/edit
+actually used exokernel https://github.com/alexeyk13/rexos
