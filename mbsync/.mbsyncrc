@@ -1,0 +1,19 @@
+IMAPAccount kurls
+# Address to connect to
+Host imap.strato.de
+User es@kurlsventish.de
+PassCmd "pass web/kurlsventish.de/es"
+
+IMAPStore kurls-remote
+Account kurls
+
+MaildirStore kurls-local
+SubFolders Verbatim
+Path ~/.mail/eskurls/
+Inbox ~/.mail/eskurls/Inbox
+
+Channel kurls
+Far :kurls-remote:
+Near :kurls-local:
+Create Both
+SyncState *

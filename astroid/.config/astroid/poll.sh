@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 # located at ~/.config/astroid/poll.sh
 
 # TODO Add checks for notmuch database and if gmail is setup correctly
@@ -14,6 +14,11 @@ currentDir=$PWD
 cd ~/.mail/account.gmail/
 gmi push
 gmi pull
+cd $currentDir
+
+# Fetch with isync
+cd ~/.mail/eskurls/
+mbsync -L kurls
 cd $currentDir
 
 # Import new mail into the notmuch database.
