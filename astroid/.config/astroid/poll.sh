@@ -23,5 +23,6 @@ cd $currentDir
 
 # Import new mail into the notmuch database.
 notmuch new
-notifymuch
+# TODO Not working at the moment - needs a gentoo package
+# notifymuch 
 # https://github.com/astroidmail/astroid/wiki/Processing-mail
