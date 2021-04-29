@@ -1,6 +1,8 @@
 from pathlib import Path
 home = str(Path.home())
 
+config.load_autoconfig()
+
 youtubeAudioDownload = "spawn youtube-dl -o '~/Music/Unsorted/%(title)s.%(ext)s' --no-cache-dir --extract-audio '{url}'"
 youtubePlaylistAudioDownload = "spawn youtube-dl -o '~/Music/Unsorted/%(title)s.%(ext)s' --no-cache-dir --extract-audio '{url}' --yes-playlist"
 
@@ -62,15 +64,14 @@ c.url.searchengines = {
 c.tabs.position = 'top'
 c.tabs.show = 'switching'
 
+path_to_file_launcher = home + "/.config/qutebrowser/waitqutetemp"
 c.fileselect.handler = "external"
-c.fileselect.multiple_files.command = ["/home/toms/.local/bin/waitqutetemp", "choosefiles", "{}"]
-c.fileselect.single_file.command = ["/home/toms/.local/bin/waitqutetemp", "choosefile", "{}"]
+c.fileselect.multiple_files.command = [path_to_file_launcher, "choosefiles", "{}"]
+c.fileselect.single_file.command = [path_to_file_launcher, "choosefile", "{}"]
 
 with config.pattern('*://app.slack.com/') as domainC:
     domainC.content.notifications.enabled = True
 
-# with open('/home/toms/.config/qutebrowser/nord-qutebrowser.py', 'r') as f:
 with open(home + '/.config/qutebrowser/nord-qutebrowser.py', 'r') as f:
     exec(f.read())
 
-config.load_autoconfig()

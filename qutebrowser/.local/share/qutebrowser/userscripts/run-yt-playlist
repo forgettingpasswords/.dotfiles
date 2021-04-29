@@ -1,4 +1,4 @@
-#!/nix/store/0n4asq0snd1fxzk5f3zy1s52kvidr7pp-system-path/bin/python3
+#!/usr/bin/python3
 
 import urllib.parse as urlparse
 from urllib.parse import parse_qs

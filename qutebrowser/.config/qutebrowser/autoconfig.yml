@@ -16,13 +16,13 @@ settings:
     global: en-US,en
   content.media.audio_capture:
     global: true
-    https://app.slack.com: false
+    https://app.slack.com: true
   content.media.audio_video_capture:
     global: true
-    https://app.slack.com: false
+    https://app.slack.com: true
   content.media.video_capture:
     global: true
-    https://app.slack.com: false
+    https://app.slack.com: true
   content.notifications.enabled:
     https://app.slack.com: true
     https://app.zeplin.io: true
@@ -32,30 +32,6 @@ settings:
     https://mail.google.com?extsrc=mailto&url=%25s: false
   backend:
     global: webengine
-  bindings.commands:
-    global:
-      normal:
-        D: tab-close
-        E: tab-prev
-        F: null
-        I: forward
-        K: search-prev
-        L: null
-        N: tab-next
-        P: reload -f
-        R: null
-        T: hint all tab
-        d: null
-        e: scroll up
-        f: null
-        fe: open-editor
-        i: scroll right
-        k: search-next
-        l: enter-mode insert
-        n: scroll down
-        p: reload
-        r: null
-        t: hint
   content.print_element_backgrounds:
     global: false
   editor.command:
