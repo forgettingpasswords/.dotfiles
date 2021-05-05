@@ -42,7 +42,7 @@ This function should only modify configuration layer settings."
      php
      lua
      org
-     ;; agda
+     confluence
      themes-megapack
      major-modes
      shell-scripts
@@ -590,6 +590,8 @@ you should place your code here."
   (with-eval-after-load 'flycheck
     (flycheck-add-mode 'javascript-eslint 'typescript-tsx-mode))
   ;; (use-package company-lsp :commands company-lsp)
+
+  (setq confluence-url "https://wiki.novamedia.com/confluence/rpc/xmlrpc")
 
   (setq javascript-fmt-tool 'prettier)
   (add-hook 'rjsx-mode-hook #'lsp)
